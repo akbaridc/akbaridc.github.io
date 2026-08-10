@@ -104,10 +104,11 @@ const Hero = () => {
           <div className="space-y-8">
             <div className="relative inline-flex">
               <div className="absolute -inset-8 hero-glow rounded-full" />
+              <div className="absolute -inset-1 rounded-full hero-ring" />
               <img
                 src={profileImage}
                 alt="Akbar Imawan Dwi Cahya - Fullstack Developer"
-                className="relative w-24 h-24 rounded-full border border-border object-cover"
+                className="relative w-24 h-24 rounded-full border-4 border-background object-cover"
               />
             </div>
 

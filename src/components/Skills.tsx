@@ -1,21 +1,66 @@
 import Reveal from "./Reveal";
+import { Database } from "lucide-react";
+import {
+  SiReact,
+  SiAngular,
+  SiTailwindcss,
+  SiBootstrap,
+  SiJavascript,
+  SiTypescript,
+  SiAlpinedotjs,
+  SiPhp,
+  SiLaravel,
+  SiPython,
+  SiMysql,
+  SiPostgresql,
+  SiGit,
+  SiComposer,
+  SiPostman,
+  SiDocker,
+  SiMongodb,
+  SiRedis,
+  SiRabbitmq,
+} from "react-icons/si";
+
+const skillCategories = [
+  {
+    category: "frontend",
+    skills: [
+      { name: "React", Icon: SiReact, color: "#61DAFB" },
+      { name: "AngularJS", Icon: SiAngular, color: "#DD0031" },
+      { name: "Tailwind CSS", Icon: SiTailwindcss, color: "#38BDF8" },
+      { name: "Bootstrap", Icon: SiBootstrap, color: "#7952B3" },
+      { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+      { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
+      { name: "Alpine.js", Icon: SiAlpinedotjs, color: "#8BC0D0" },
+    ],
+  },
+  {
+    category: "backend",
+    skills: [
+      { name: "PHP", Icon: SiPhp, color: "#777BB4" },
+      { name: "Laravel", Icon: SiLaravel, color: "#FF2D20" },
+      { name: "Python", Icon: SiPython, color: "#3776AB" },
+      { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
+      { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+      { name: "Oracle", Icon: Database, color: "#F80000" },
+    ],
+  },
+  {
+    category: "tools",
+    skills: [
+      { name: "Git", Icon: SiGit, color: "#F05032" },
+      { name: "Composer", Icon: SiComposer, color: "#885630" },
+      { name: "Postman", Icon: SiPostman, color: "#FF6C37" },
+      { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+      { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
+      { name: "Redis", Icon: SiRedis, color: "#DC382D" },
+      { name: "RabbitMQ", Icon: SiRabbitmq, color: "#FF6600" },
+    ],
+  },
+];
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      category: "frontend",
-      skills: ["React", "AngularJS", "Tailwind CSS", "Bootstrap", "JavaScript", "TypeScript", "Alpine.js"],
-    },
-    {
-      category: "backend",
-      skills: ["PHP", "Laravel", "Python", "MySQL", "PostgreSQL", "Oracle"],
-    },
-    {
-      category: "tools",
-      skills: ["Git", "Composer", "Postman", "Docker", "MongoDB", "Redis", "RabbitMQ"],
-    },
-  ];
-
   return (
     <section id="skills" className="py-24 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -33,13 +78,19 @@ const Skills = () => {
                 <h3 className="font-mono text-sm text-muted-foreground">
                   $ {category.category}
                 </h3>
-                <div className="space-y-2">
-                  {category.skills.map((skill) => (
-                    <div key={skill} className="group flex items-center gap-3 text-foreground/90">
-                      <span className="text-primary transition-transform duration-300 group-hover:translate-x-1">
-                        ›
+                <div className="flex flex-wrap gap-3">
+                  {category.skills.map(({ name, Icon, color }) => (
+                    <div
+                      key={name}
+                      className="group relative flex h-12 w-12 items-center justify-center border border-border rounded-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 hover:bg-card"
+                    >
+                      <Icon
+                        className="h-6 w-6 transition-transform duration-300 group-hover:scale-110"
+                        style={{ color }}
+                      />
+                      <span className="pointer-events-none absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-card px-2 py-1 font-mono text-xs text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                        {name}
                       </span>
-                      <span>{skill}</span>
                     </div>
                   ))}
                 </div>

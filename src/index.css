@@ -122,6 +122,16 @@ All colors MUST be HSL. */
     filter: blur(48px);
   }
 
+  .hero-ring {
+    background: conic-gradient(
+      hsl(var(--primary)),
+      transparent 25%,
+      transparent 75%,
+      hsl(var(--primary))
+    );
+    animation: hero-ring-spin 6s linear infinite;
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(16px);
@@ -179,6 +189,12 @@ All colors MUST be HSL. */
   }
   to {
     background-position: 28px 28px;
+  }
+}
+
+@keyframes hero-ring-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 

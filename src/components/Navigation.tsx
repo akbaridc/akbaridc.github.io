@@ -54,6 +54,10 @@ const Navigation = () => {
             {resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
 
+          <Button size="sm" className="hidden md:inline-flex" asChild>
+            <a href="#contact">Hire Me</a>
+          </Button>
+
           <div className="hidden md:flex items-center gap-8 text-sm">
             {menuItems.map((item) => {
               const isActive = activeSection === item.href.substring(1);
