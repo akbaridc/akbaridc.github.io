@@ -1,52 +1,50 @@
+import Reveal from "./Reveal";
+
 const Skills = () => {
   const skillCategories = [
-    { 
-      category: "Frontend", 
-      skills: ["React", "AngularJS", "Tailwind CSS", "Bootstrap", "JavaScript", "TypeScript", "Alpine.js"] 
+    {
+      category: "frontend",
+      skills: ["React", "AngularJS", "Tailwind CSS", "Bootstrap", "JavaScript", "TypeScript", "Alpine.js"],
     },
-    { 
-      category: "Backend", 
-      skills: ["PHP", "Laravel", "Python (Beginner)", "MySQL", "PostgreSQL", "Oracle"] 
+    {
+      category: "backend",
+      skills: ["PHP", "Laravel", "Python", "MySQL", "PostgreSQL", "Oracle"],
     },
-    { 
-      category: "Tools & Others", 
-      skills: ["Git", "Composer", "Postman", "Docker (Basic)", "MongoDB", "Redis", "RabbitMQ"] 
-    }
+    {
+      category: "tools",
+      skills: ["Git", "Composer", "Postman", "Docker", "MongoDB", "Redis", "RabbitMQ"],
+    },
   ];
 
   return (
-    <section id="skills" className="py-20 px-4 relative">
+    <section id="skills" className="py-24 px-4">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Technical <span className="gradient-primary text-gradient">Skills</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Technologies and tools I work with to bring ideas to life
-          </p>
-        </div>
+        <Reveal>
+          <div className="mb-12 space-y-2">
+            <p className="font-mono text-sm text-primary tracking-widest">{"// skills"}</p>
+            <h2 className="text-2xl md:text-3xl font-normal tracking-tight">Skills</h2>
+          </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <div
-              key={index}
-              className="glass-effect p-8 rounded-2xl space-y-6 hover:shadow-glow transition-all duration-300"
-            >
-              <h3 className="text-2xl font-semibold text-accent">{category.category}</h3>
-              <div className="space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <div
-                    key={skillIndex}
-                    className="flex items-center gap-3 group cursor-default"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-primary group-hover:scale-150 transition-transform" />
-                    <span className="text-foreground/90 group-hover:text-foreground group-hover:translate-x-1 transition-all">
-                      {skill}
-                    </span>
-                  </div>
-                ))}
+          {skillCategories.map((category, i) => (
+            <Reveal key={category.category} delay={i * 80}>
+              <div className="space-y-4">
+                <h3 className="font-mono text-sm text-muted-foreground">
+                  $ {category.category}
+                </h3>
+                <div className="space-y-2">
+                  {category.skills.map((skill) => (
+                    <div key={skill} className="group flex items-center gap-3 text-foreground/90">
+                      <span className="text-primary transition-transform duration-300 group-hover:translate-x-1">
+                        ›
+                      </span>
+                      <span>{skill}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

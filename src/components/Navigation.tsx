@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { resolvedTheme, setTheme } = useTheme();
 
   const menuItems = [
-    { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
     { label: "Experience", href: "#experience" },
@@ -18,15 +18,11 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // navbar glass effect
-      setIsScrolled(window.scrollY > 50);
-
-      // menentukan section aktif
       let currentSection = "home";
       menuItems.forEach((item) => {
         const section = document.querySelector(item.href);
         if (section) {
-          const sectionTop = section.offsetTop - 100; // offset agar lebih natural
+          const sectionTop = section.offsetTop - 100;
           if (window.scrollY >= sectionTop) {
             currentSection = item.href.substring(1);
           }
@@ -36,27 +32,29 @@ const Navigation = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // jalankan sekali saat mount
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass-effect shadow-card" : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#home" className="text-xl md:text-2xl font-bold">
-            <span className="gradient-primary text-gradient">Akbar</span>
-            <span className="text-foreground">.</span>
-          </a>
+    <nav className="fixed top-3 inset-x-0 z-50 px-4">
+      <div className="max-w-4xl mx-auto bg-card/80 backdrop-blur-xl border border-border rounded-full pl-6 pr-3 h-14 flex items-center justify-between animate-fade-in">
+        <a href="#home" className="text-lg tracking-tight">
+          akbar<span className="text-primary">.</span>
+        </a>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            aria-label="Toggle theme"
+          >
+            {resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
+
+          <div className="hidden md:flex items-center gap-8 text-sm">
             {menuItems.map((item) => {
               const isActive = activeSection === item.href.substring(1);
               return (
@@ -64,14 +62,12 @@ const Navigation = () => {
                   key={item.label}
                   href={item.href}
                   className={`relative group transition-colors ${
-                    isActive
-                      ? "text-primary font-semibold"
-                      : "text-foreground/80 hover:text-foreground"
+                    isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                    className={`absolute -bottom-1.5 left-0 h-px bg-primary transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
@@ -80,40 +76,36 @@ const Navigation = () => {
             })}
           </div>
 
-          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
             className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden glass-effect rounded-2xl my-4 p-6 space-y-4 animate-fade-in">
-            {menuItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={`block py-2 transition-colors ${
-                    isActive
-                      ? "text-primary font-semibold"
-                      : "text-foreground/80 hover:text-foreground"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
-          </div>
-        )}
       </div>
+
+      {isMobileMenuOpen && (
+        <div className="max-w-4xl mx-auto mt-2 bg-card/90 backdrop-blur-xl border border-border rounded-xl px-6 py-4 space-y-1 text-sm animate-fade-in md:hidden">
+          {menuItems.map((item) => {
+            const isActive = activeSection === item.href.substring(1);
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`block py-2 transition-colors ${
+                  isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+        </div>
+      )}
     </nav>
   );
 };

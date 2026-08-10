@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          document.documentElement.classList.add(stored || "dark");
+        } catch (e) {}
+      })();
+    </script>
     <title>Akbar Imawan Dwi Cahya | Fullstack & Web Developer | Freelance Developer</title>
 
     <meta name="description" content="Akbar Imawan Dwi Cahya is a Fullstack Web Developer & Freelance Developer specializing in modern web technologies, building scalable and high-performance web applications." />
@@ -10,13 +18,18 @@
     <meta name="keywords" content="Akbar Imawan, Akbar Imawan Dwi Cahya, Fullstack Developer, Web Developer, Freelance Developer, Software Engineer, JavaScript, PHP, Laravel, React, Next.js, Indonesia Developer" />
 
     <meta name="author" content="Akbar Imawan Dwi Cahya" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0f0f0f" />
 
+    <meta property="og:site_name" content="Akbar Imawan" />
     <meta property="og:title" content="Akbar Imawan Dwi Cahya | Fullstack & Web Developer" />
     <meta property="og:description" content="Explore Akbar Imawan's portfolio — Fullstack Developer & Freelance Web Developer building modern, scalable digital experiences." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://akbaridc.netlify.app" />
+    <meta property="og:url" content="https://akbaridc.github.io" />
+    <meta property="og:image" content="https://akbaridc.github.io/profile.png" />
+    <meta property="og:image:alt" content="Akbar Imawan Dwi Cahya" />
 
-    <link rel="canonical" href="https://akbaridc.netlify.app" />
+    <link rel="canonical" href="https://akbaridc.github.io" />
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
@@ -26,7 +39,7 @@
       "@type": "Person",
       "name": "Akbar Imawan Dwi Cahya",
       "jobTitle": "Fullstack Web Developer",
-      "url": "https://akbaridc.netlify.app",
+      "url": "https://akbaridc.github.io",
       "sameAs": [
         "https://www.linkedin.com/in/akbaridc",
         "https://github.com/akbaridc",
