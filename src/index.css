@@ -141,6 +141,19 @@ All colors MUST be HSL. */
     animation: glow-breathe 8s ease-in-out infinite;
   }
 
+  .dots-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    pointer-events: none;
+    background-image: radial-gradient(
+      hsl(153 54% 53% / 0.08) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+    animation: dots-scroll 60s linear infinite;
+  }
+
   .ambient-1,
   .ambient-2 {
     position: fixed;
@@ -157,6 +170,15 @@ All colors MUST be HSL. */
   .ambient-2 {
     background: radial-gradient(closest-side, hsl(220 15% 45% / 0.09), transparent);
     animation: ambient-drift 34s ease-in-out infinite alternate-reverse;
+  }
+}
+
+@keyframes dots-scroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 28px 28px;
   }
 }
 

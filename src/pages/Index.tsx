@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <div className="dots-grid" />
       <div className="ambient-1 top-[-10%] left-[10%] w-[60vw] h-[60vh] -z-10" />
       <div className="ambient-2 bottom-[-15%] right-[5%] w-[55vw] h-[55vh] -z-10" />
       <ScrollProgress />
