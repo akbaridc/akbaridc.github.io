@@ -44,6 +44,30 @@ const Navigation = () => {
           akbar<span className="text-primary">.</span>
         </a>
 
+        {/* Center-Right: Navigation Links */}
+        <div className="hidden md:flex items-center gap-8 text-sm ml-auto mr-8">
+          {menuItems.map((item) => {
+            const isActive = activeSection === item.href.substring(1);
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`relative group transition-colors ${
+                  isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {item.label}
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-px bg-primary transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Far-Right: Theme Switcher & CTAs */}
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"
@@ -57,28 +81,6 @@ const Navigation = () => {
           <Button size="sm" className="hidden md:inline-flex" asChild>
             <a href="#contact">Hire Me</a>
           </Button>
-
-          <div className="hidden md:flex items-center gap-8 text-sm">
-            {menuItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={`relative group transition-colors ${
-                    isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {item.label}
-                  <span
-                    className={`absolute -bottom-1.5 left-0 h-px bg-primary transition-all duration-300 ${
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                  />
-                </a>
-              );
-            })}
-          </div>
 
           <Button
             variant="ghost"

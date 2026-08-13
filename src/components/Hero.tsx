@@ -142,7 +142,7 @@ const Hero = () => {
 
             <div className="flex items-center gap-3 text-sm text-muted-foreground">
               <span className="inline-block h-2 w-2 rounded-full bg-primary animate-pulse" />
-              <span>available for work</span>
+              <span>available for projects</span>
             </div>
           </div>
 

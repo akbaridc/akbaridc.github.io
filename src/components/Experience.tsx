@@ -90,48 +90,59 @@ const Experience = () => {
     <section id="experience" className="py-24 px-4">
       <div className="container mx-auto max-w-6xl">
         <Reveal>
-          <div className="mb-12 space-y-2">
+          <div className="mb-16 space-y-2">
             <p className="font-mono text-sm text-primary tracking-widest">{"// experience"}</p>
-            <h2 className="text-2xl md:text-3xl font-normal tracking-tight">Experience</h2>
+            <h2 className="text-2xl md:text-3xl font-normal tracking-tight">Work Experience</h2>
           </div>
         </Reveal>
 
-        <div className="border-t border-b border-border">
+        <div className="relative pl-6 md:pl-8 border-l border-border/80 ml-4 md:ml-6 space-y-12">
           {experiences.map((exp, index) => (
             <Reveal key={index} delay={(index % 3) * 60}>
-              <div className={`py-10 ${index > 0 ? "border-t border-border" : ""}`}>
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
-                <div>
-                  <h3 className="text-lg font-medium">{exp.title}</h3>
-                  <p className="text-muted-foreground">{exp.company}</p>
+              <div className="relative">
+                {/* Timeline node */}
+                <div className="absolute left-0 -translate-x-[31px] md:-translate-x-[39px] top-1.5 h-4 w-4 rounded-full border-2 border-primary bg-background flex items-center justify-center">
+                  <div className="h-1.5 w-1.5 rounded-full bg-primary" />
                 </div>
-                <p className="font-mono text-sm text-muted-foreground whitespace-nowrap">
-                  {exp.period}
-                </p>
-              </div>
 
-              <p className="text-muted-foreground mb-6 max-w-3xl">{exp.description}</p>
-
-              <ul className="space-y-1.5 mb-6">
-                {exp.details.map((detail, i) => (
-                  <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    <span>{detail}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-2">
-                {exp.stacks.map((stack, i) => (
-                  <span
-                    key={i}
-                    className="text-xs font-mono text-muted-foreground border border-border px-2 py-1 rounded"
-                  >
-                    {stack}
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+                  <div>
+                    <h3 className="text-lg font-semibold tracking-tight text-foreground">
+                      {exp.title}
+                    </h3>
+                    <p className="text-sm font-medium text-primary">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <span className="inline-block px-3 py-1 rounded-full bg-secondary/60 border border-border text-xs font-mono text-muted-foreground w-fit h-fit">
+                    {exp.period}
                   </span>
-                ))}
+                </div>
+
+                <p className="text-sm text-muted-foreground mb-4 max-w-3xl leading-relaxed">
+                  {exp.description}
+                </p>
+
+                <ul className="space-y-2 mb-4 pl-1">
+                  {exp.details.map((detail, i) => (
+                    <li key={i} className="text-xs text-muted-foreground flex items-start gap-2.5">
+                      <span className="text-primary/75 mt-1.5 text-[8px]">&bull;</span>
+                      <span className="leading-relaxed">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {exp.stacks.map((stack, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] font-mono tracking-wider uppercase bg-secondary/50 border border-border px-2 py-0.5 rounded text-muted-foreground"
+                    >
+                      {stack}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
             </Reveal>
           ))}
         </div>

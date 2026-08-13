@@ -14,12 +14,11 @@ import {
   SiMysql,
   SiPostgresql,
   SiGit,
-  SiComposer,
-  SiPostman,
   SiDocker,
   SiMongodb,
   SiRedis,
   SiRabbitmq,
+  SiV
 } from "react-icons/si";
 
 const skillCategories = [
@@ -27,6 +26,7 @@ const skillCategories = [
     category: "frontend",
     skills: [
       { name: "React", Icon: SiReact, color: "#61DAFB" },
+      { name: "Vue", Icon: SiV, color: "#61DAFB" },
       { name: "AngularJS", Icon: SiAngular, color: "#DD0031" },
       { name: "Tailwind CSS", Icon: SiTailwindcss, color: "#38BDF8" },
       { name: "Bootstrap", Icon: SiBootstrap, color: "#7952B3" },
@@ -41,20 +41,28 @@ const skillCategories = [
       { name: "PHP", Icon: SiPhp, color: "#777BB4" },
       { name: "Laravel", Icon: SiLaravel, color: "#FF2D20" },
       { name: "Python", Icon: SiPython, color: "#3776AB" },
-      { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
-      { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
-      { name: "Oracle", Icon: Database, color: "#F80000" },
     ],
   },
   {
-    category: "tools",
+    category: "database",
     skills: [
-      { name: "Git", Icon: SiGit, color: "#F05032" },
-      { name: "Composer", Icon: SiComposer, color: "#885630" },
-      { name: "Postman", Icon: SiPostman, color: "#FF6C37" },
-      { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+      { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
+      { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+      { name: "Oracle", Icon: Database, color: "#F80000" },
       { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
       { name: "Redis", Icon: SiRedis, color: "#DC382D" },
+    ],
+  },
+  {
+    category: "version control",
+    skills: [
+      { name: "Git", Icon: SiGit, color: "#F05032" },
+    ],
+  },
+  {
+    category: "etc",
+    skills: [
+      { name: "Docker", Icon: SiDocker, color: "#2496ED" },
       { name: "RabbitMQ", Icon: SiRabbitmq, color: "#FF6600" },
     ],
   },
